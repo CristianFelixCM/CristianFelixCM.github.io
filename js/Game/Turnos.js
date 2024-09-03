@@ -11,7 +11,6 @@ export class Turnos {
         for (let idx = 0; idx < this.turnos.length; idx++) {
             if (this.turnos[idx] == this.turnoActual) {
                 this.turnoActual = this.turnos[Matematicas.modulo(idx + 1, this.turnos.length)];
-                console.log("turno actual " + this.turnoActual);
                 break;
             }
         }

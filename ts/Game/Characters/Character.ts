@@ -29,13 +29,7 @@ export class Character{
 
     identificador : number; 
 
-    Hp = 100;
-    HpActual = this.Hp;
-    dañoGolpe = 50;
-    expPorDerrota = 10;
-    expActual = 0;
-    expSubirNivel = 10;
-    nivel = 1;
+
 
     
     constructor(id : number, name : string, animaciones : string[], framesAnimaciones : number[]){
@@ -141,10 +135,6 @@ export class Character{
         }       
      }
 
-
-     setHp(daño : number){
-        this.HpActual -= daño;
-     }
 
 
 

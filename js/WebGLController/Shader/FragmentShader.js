@@ -80,9 +80,6 @@ Fragment.fragCode = `   #version 300 es
 
 
 
-
-
-
 //PUNTO LUZ ---------
         float l;
         float atenuacion;
@@ -93,7 +90,7 @@ Fragment.fragCode = `   #version 300 es
             
             l *= atenuacion;  
 
-            color += l; //el color lo tengo que ir calculado por cada fuente de luz calculada
+            color += l; 
         }
 //-------------
 
@@ -105,7 +102,7 @@ Fragment.fragCode = `   #version 300 es
 
         if(isLamp == 1) fragColor = texture(u_texture, vTextureCoords);
   
-//fragColor = texture(u_texture, vTextureCoords);
+
 
     }
 `;

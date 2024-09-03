@@ -13,13 +13,6 @@ import { Clock } from "../Clock.js";
 export class Character {
     constructor(id, name, animaciones, framesAnimaciones) {
         this.casillaActual = [0, 0];
-        this.Hp = 100;
-        this.HpActual = this.Hp;
-        this.dañoGolpe = 50;
-        this.expPorDerrota = 10;
-        this.expActual = 0;
-        this.expSubirNivel = 10;
-        this.nivel = 1;
         this.model = name;
         this.matrix = new Float32Array([
             1.0, 0.0, 0.0, 0.0,
@@ -103,9 +96,6 @@ export class Character {
                 this.casillaActual[1] -= 1;
                 break;
         }
-    }
-    setHp(daño) {
-        this.HpActual -= daño;
     }
     getOrientacion() { return this.orientacion; }
 }

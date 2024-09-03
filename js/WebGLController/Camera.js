@@ -69,9 +69,9 @@ export class Camera {
     }
     update() {
         Matematicas.identity(this.matrix);
-        Matematicas.translate(this.matrix, this.matrix, this.position);
-        Matematicas.rotateY(this.matrix, this.matrix, this.azimuth * Math.PI / 180);
-        Matematicas.rotateX(this.matrix, this.matrix, this.elevation * Math.PI / 180);
+        Matematicas.translate(this.matrix, this.position);
+        Matematicas.rotateY(this.matrix, this.azimuth * Math.PI / 180);
+        Matematicas.rotateX(this.matrix, this.elevation * Math.PI / 180);
     }
     getViewTransform() {
         const matrix = Matematicas.createIdentityMatrix();

@@ -79,7 +79,7 @@ class Game {
             let pos = this.map.getCasillaVacia();
             this.protagonist.setCasilla(pos[0], pos[1]);
             this.protagonist.setPosition(pos[1] * 2, 0, pos[0] * 2);
-            WebGLController.getCamera().setPosition([pos[1] * 2, 0.40, pos[0] * 2]);
+            WebGLController.getCamera().setPosition([pos[1] * 2, 0.1, pos[0] * 2]);
             yield this.protagonist.cargarModelo(gl);
             yield this.arco.cargarModelo(gl);
             this.Enemys = [];
@@ -131,7 +131,7 @@ class Game {
             }
             this.flechas = [];
             for (let i = 0; i < 6; i++) {
-                let flecha = new Character(1, "Flecha", ["Parado"], [1]);
+                let flecha = new Character(1, "flecha", ["Parado"], [1]);
                 yield flecha.cargarModelo(gl);
                 pos = this.map.getCasillaVacia();
                 flecha.setCasilla(pos[0], pos[1]);
@@ -180,12 +180,10 @@ class Game {
                     }
                     break;
             }
-            console.log(this.stateGamePlay);
             setTimeout(this.logic.bind(this), 10);
         });
     }
     renderGame() {
-        contadorFPS();
         WebGLController.initRender();
         this.Enemys.forEach(element => {
             element.actualizarFrame();
@@ -257,14 +255,14 @@ class Game {
         }
     }
     renderScreenWin() {
-        this.screens.drawPantalla("YOU WIN");
+        this.screens.drawPantalla("Ganaste");
         if (this.stateGamePlay == 0)
             this.renderScreenInit();
         else
             setTimeout(this.renderScreenWin.bind(this), 100);
     }
     renderScreenLose() {
-        this.screens.drawPantalla("YOU LOSE");
+        this.screens.drawPantalla("Perdiste");
         if (this.stateGamePlay == 0)
             this.renderScreenInit();
         else
@@ -306,9 +304,7 @@ class Game {
                         this.turnos.actualizarTurnos();
                 }
                 else if (actionSelect == 6) {
-                    console.log("mostrar mapa");
                     this.interface.showMap();
-                    console.log(this.interface.mapaActivo);
                 }
                 break;
             case 2:
@@ -417,7 +413,6 @@ class Game {
                 posSig[1] -= 1;
                 break;
         }
-        console.log("el prota esta " + this.protagonist.getCasilla() + "  y se mueve a " + posSig);
         if (this.map.esEscalera(posSig[0], posSig[1])) {
             this.numPiso++;
             this.interface.addTextLog("subiendo a piso " + this.numPiso);
@@ -441,14 +436,15 @@ class Game {
                     }
                     if (this.enemigoDañado != -1) {
                         this.Enemys[this.enemigoDañado].clock.iniciar();
-                        this.Enemys[this.enemigoDañado].setHp(this.protagonist.dañoGolpe);
+                        let daño = this.protagonist.dañoGolpe * (this.protagonist.getNivel() / this.Enemys[this.enemigoDañado].getNivel());
+                        this.Enemys[this.enemigoDañado].setHp(daño);
                         if (this.Enemys[this.enemigoDañado].HpActual <= 0) {
                             this.Enemys[this.enemigoDañado].state = 3;
-                            this.interface.addTextLog(this.Enemys[this.enemigoDañado].model + " recibe " + this.protagonist.dañoGolpe + " de daño y muere");
+                            this.interface.addTextLog(this.Enemys[this.enemigoDañado].model + " recibe " + daño + " de daño y muere");
                         }
                         else {
                             this.Enemys[this.enemigoDañado].state = 3;
-                            this.interface.addTextLog(this.Enemys[this.enemigoDañado].model + " recibe " + this.protagonist.dañoGolpe + " de daño");
+                            this.interface.addTextLog(this.Enemys[this.enemigoDañado].model + " recibe " + daño + " de daño");
                         }
                     }
                     this.stateAtacar = 1;
@@ -553,7 +549,6 @@ class Game {
             if (casillasAfectadas[i][0] > 0 && casillasAfectadas[i][0] < this.map.tamMapa && casillasAfectadas[i][1] > 0 && casillasAfectadas[i][1] < this.map.tamMapa) {
                 for (let e = 0; e < this.Enemys.length; e++) {
                     if (this.Enemys[e].getCasilla()[0] == casillasAfectadas[i][0] && this.Enemys[e].getCasilla()[1] == casillasAfectadas[i][1]) {
-                        console.log("dañe a enemigo " + e);
                         return e;
                     }
                 }
@@ -569,8 +564,9 @@ class Game {
                     this.Enemys[indice].clock.iniciar();
                     this.protagonist.clock.iniciar();
                     this.protagonist.state = 3;
-                    this.protagonist.setHp(this.Enemys[indice].dañoGolpe);
-                    this.interface.addTextLog("Protagonista recibe " + this.Enemys[indice].dañoGolpe + " de daño");
+                    let daño = this.Enemys[indice].dañoGolpe * (this.Enemys[indice].getNivel() / this.protagonist.getNivel());
+                    this.protagonist.setHp(daño);
+                    this.interface.addTextLog("Protagonista recibe " + daño + " de daño");
                     this.stateAtaqueEnemigo = 1;
                 }
                 break;
@@ -609,7 +605,6 @@ class Game {
         });
     }
     subir() {
-        console.log("subiendo");
         this.numPiso++;
         this.interface.addTextLog("subiendo a piso " + this.numPiso);
         if (this.numPiso == 2) {
@@ -629,38 +624,29 @@ clockControles.delta = 1;
 function majeadorTeclado(e) {
     if (clockControles.delta >= 0.2) {
         clockControles.iniciar();
-        console.log(e.keyCode);
         if (e.keyCode == 39) {
             tecla = 1;
-            console.log("der");
         }
         else if (e.keyCode == 37) {
             tecla = 3;
-            console.log("izq");
         }
         else if (e.keyCode == 38) {
             tecla = 0;
-            console.log("arr");
         }
         else if (e.keyCode == 40) {
             tecla = 2;
-            console.log("abaj");
         }
         else if (e.keyCode == 65) {
             tecla = 4;
-            console.log("atacar");
         }
         else if (e.keyCode == 67) {
             tecla = 8;
-            console.log("flecha");
         }
         else if (e.keyCode == 80) {
             tecla = 7;
-            console.log("pocion");
         }
         else if (e.keyCode == 77) {
             tecla = 6;
-            console.log("m de mapa");
         }
         else if (e.keyCode == 81) {
             game.subir();

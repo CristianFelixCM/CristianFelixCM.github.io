@@ -3,6 +3,14 @@ import { Character } from "./Character.js";
 
 export class Enemy extends Character{
 
+    Hp = 100;
+    HpActual = this.Hp;
+    dañoGolpe = 20;
+    expPorDerrota = 10;
+    expActual = 0;
+    expSubirNivel = 10;
+    nivel = 1;
+
 
     posPrevia = [0,0,0];
     andar(map : any){
@@ -50,5 +58,16 @@ export class Enemy extends Character{
      }
 
 
+     setHp(daño : number){
+        this.HpActual -= daño;
+     }
 
+     getNivel(){
+        return this.nivel;
+     }
+
+
+     setNivel(nivel : number){
+        this.nivel = nivel;
+     }
 }

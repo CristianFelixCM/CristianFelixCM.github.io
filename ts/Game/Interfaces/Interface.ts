@@ -45,7 +45,6 @@ export class Interface{
         this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
 
-
         //imagen de fondo
         this.context.drawImage(this.imagen,0,0,this.imagen.width,this.imagen.height,0,0,this.canvas.width,this.canvas.height);
         
@@ -369,6 +368,8 @@ export class Interface{
        this.context.strokeText("FPS = "+this.fps, posX, posY);
        this.context.fillText("FPS = "+this.fps, posX, posY);
     }
+
+
 
 
 

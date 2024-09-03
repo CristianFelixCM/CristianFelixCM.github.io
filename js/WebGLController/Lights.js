@@ -24,9 +24,6 @@ export class Lights {
             this.numLight++;
         }
     }
-    getLights() {
-        return 0;
-    }
     getArrayPosition() {
         return this.arrayPositions;
     }

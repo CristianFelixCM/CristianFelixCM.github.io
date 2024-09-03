@@ -69,176 +69,110 @@ export class Matematicas {
         matrix[10] = c * matrix[10] - s * mv8;
         return matrix;
     }
-    static transformMat4(out, a, m) {
+    static transformMat4(matrix, a, m) {
         let x = a[0], y = a[1], z = a[2], w = a[3];
-        out[0] = m[0] * x + m[4] * y + m[8] * z + m[12] * w;
-        out[1] = m[1] * x + m[5] * y + m[9] * z + m[13] * w;
-        out[2] = m[2] * x + m[6] * y + m[10] * z + m[14] * w;
-        out[3] = m[3] * x + m[7] * y + m[11] * z + m[15] * w;
-        return out;
+        matrix[0] = m[0] * x + m[4] * y + m[8] * z + m[12] * w;
+        matrix[1] = m[1] * x + m[5] * y + m[9] * z + m[13] * w;
+        matrix[2] = m[2] * x + m[6] * y + m[10] * z + m[14] * w;
+        matrix[3] = m[3] * x + m[7] * y + m[11] * z + m[15] * w;
+        return matrix;
     }
-    static set(out, x, y, z, w) {
-        out[0] = x;
-        out[1] = y;
-        out[2] = z;
-        out[3] = w;
-        return out;
+    static set(vector, x, y, z, w) {
+        vector[0] = x;
+        vector[1] = y;
+        vector[2] = z;
+        vector[3] = w;
+        return vector;
     }
-    static copyV4(out, a) {
-        out[0] = a[0];
-        out[1] = a[1];
-        out[2] = a[2];
-        out[3] = a[3];
-        return out;
+    static copyV4(vector1, vector2) {
+        vector1[0] = vector2[0];
+        vector1[1] = vector2[1];
+        vector1[2] = vector2[2];
+        vector1[3] = vector2[3];
+        return vector1;
     }
-    static copyV3(out, a) {
-        out[0] = a[0];
-        out[1] = a[1];
-        out[2] = a[2];
-        return out;
+    static copyV3(vector1, vector2) {
+        vector1[0] = vector2[0];
+        vector1[1] = vector2[1];
+        vector1[2] = vector2[2];
+        return vector1;
     }
-    static copyM4(out, a) {
-        out[0] = a[0];
-        out[1] = a[1];
-        out[2] = a[2];
-        out[3] = a[3];
-        out[4] = a[4];
-        out[5] = a[5];
-        out[6] = a[6];
-        out[7] = a[7];
-        out[8] = a[8];
-        out[9] = a[9];
-        out[10] = a[10];
-        out[11] = a[11];
-        out[12] = a[12];
-        out[13] = a[13];
-        out[14] = a[14];
-        out[15] = a[15];
-        return out;
+    static copyM4(m1, m2) {
+        m1[0] = m2[0];
+        m1[1] = m2[1];
+        m1[2] = m2[2];
+        m1[3] = m2[3];
+        m1[4] = m2[4];
+        m1[5] = m2[5];
+        m1[6] = m2[6];
+        m1[7] = m2[7];
+        m1[8] = m2[8];
+        m1[9] = m2[9];
+        m1[10] = m2[10];
+        m1[11] = m2[11];
+        m1[12] = m2[12];
+        m1[13] = m2[13];
+        m1[14] = m2[14];
+        m1[15] = m2[15];
+        return m1;
     }
-    static translate(out, a, v) {
+    static translate(matriz, v) {
         let x = v[0], y = v[1], z = v[2];
-        let a00, a01, a02, a03;
-        let a10, a11, a12, a13;
-        let a20, a21, a22, a23;
-        if (a === out) {
-            out[12] = a[0] * x + a[4] * y + a[8] * z + a[12];
-            out[13] = a[1] * x + a[5] * y + a[9] * z + a[13];
-            out[14] = a[2] * x + a[6] * y + a[10] * z + a[14];
-            out[15] = a[3] * x + a[7] * y + a[11] * z + a[15];
-        }
-        else {
-            a00 = a[0];
-            a01 = a[1];
-            a02 = a[2];
-            a03 = a[3];
-            a10 = a[4];
-            a11 = a[5];
-            a12 = a[6];
-            a13 = a[7];
-            a20 = a[8];
-            a21 = a[9];
-            a22 = a[10];
-            a23 = a[11];
-            out[0] = a00;
-            out[1] = a01;
-            out[2] = a02;
-            out[3] = a03;
-            out[4] = a10;
-            out[5] = a11;
-            out[6] = a12;
-            out[7] = a13;
-            out[8] = a20;
-            out[9] = a21;
-            out[10] = a22;
-            out[11] = a23;
-            out[12] = a00 * x + a10 * y + a20 * z + a[12];
-            out[13] = a01 * x + a11 * y + a21 * z + a[13];
-            out[14] = a02 * x + a12 * y + a22 * z + a[14];
-            out[15] = a03 * x + a13 * y + a23 * z + a[15];
-        }
-        return out;
+        let copia = [];
+        this.copyM4(copia, matriz);
+        matriz[12] = copia[0] * x + copia[4] * y + copia[8] * z + copia[12];
+        matriz[13] = copia[1] * x + copia[5] * y + copia[9] * z + copia[13];
+        matriz[14] = copia[2] * x + copia[6] * y + copia[10] * z + copia[14];
+        matriz[15] = copia[3] * x + copia[7] * y + copia[11] * z + copia[15];
+        return matriz;
     }
-    static rotateY(out, a, rad) {
+    static rotateY(matriz, rad) {
         let s = Math.sin(rad);
         let c = Math.cos(rad);
-        let a00 = a[0];
-        let a01 = a[1];
-        let a02 = a[2];
-        let a03 = a[3];
-        let a20 = a[8];
-        let a21 = a[9];
-        let a22 = a[10];
-        let a23 = a[11];
-        if (a !== out) {
-            out[4] = a[4];
-            out[5] = a[5];
-            out[6] = a[6];
-            out[7] = a[7];
-            out[12] = a[12];
-            out[13] = a[13];
-            out[14] = a[14];
-            out[15] = a[15];
-        }
-        out[0] = a00 * c - a20 * s;
-        out[1] = a01 * c - a21 * s;
-        out[2] = a02 * c - a22 * s;
-        out[3] = a03 * c - a23 * s;
-        out[8] = a00 * s + a20 * c;
-        out[9] = a01 * s + a21 * c;
-        out[10] = a02 * s + a22 * c;
-        out[11] = a03 * s + a23 * c;
-        return out;
+        let copia = [];
+        this.copyM4(copia, matriz);
+        matriz[0] = copia[0] * c - copia[8] * s;
+        matriz[1] = copia[1] * c - copia[9] * s;
+        matriz[2] = copia[2] * c - copia[10] * s;
+        matriz[3] = copia[3] * c - copia[11] * s;
+        matriz[8] = copia[0] * s + copia[8] * c;
+        matriz[9] = copia[1] * s + copia[9] * c;
+        matriz[10] = copia[2] * s + copia[10] * c;
+        matriz[11] = copia[3] * s + copia[11] * c;
+        return matriz;
     }
-    static rotateX(out, a, rad) {
+    static rotateX(matriz, rad) {
         let s = Math.sin(rad);
         let c = Math.cos(rad);
-        let a10 = a[4];
-        let a11 = a[5];
-        let a12 = a[6];
-        let a13 = a[7];
-        let a20 = a[8];
-        let a21 = a[9];
-        let a22 = a[10];
-        let a23 = a[11];
-        if (a !== out) {
-            out[0] = a[0];
-            out[1] = a[1];
-            out[2] = a[2];
-            out[3] = a[3];
-            out[12] = a[12];
-            out[13] = a[13];
-            out[14] = a[14];
-            out[15] = a[15];
-        }
-        out[4] = a10 * c + a20 * s;
-        out[5] = a11 * c + a21 * s;
-        out[6] = a12 * c + a22 * s;
-        out[7] = a13 * c + a23 * s;
-        out[8] = a20 * c - a10 * s;
-        out[9] = a21 * c - a11 * s;
-        out[10] = a22 * c - a12 * s;
-        out[11] = a23 * c - a13 * s;
-        return out;
+        let copia = [];
+        this.copyM4(copia, matriz);
+        matriz[4] = copia[4] * c + copia[8] * s;
+        matriz[5] = copia[5] * c + copia[9] * s;
+        matriz[6] = copia[6] * c + copia[10] * s;
+        matriz[7] = copia[7] * c + copia[11] * s;
+        matriz[8] = copia[8] * c - copia[4] * s;
+        matriz[9] = copia[9] * c - copia[5] * s;
+        matriz[10] = copia[10] * c - copia[6] * s;
+        matriz[11] = copia[11] * c - copia[7] * s;
+        return matriz;
     }
-    static identity(out) {
-        out[0] = 1;
-        out[1] = 0;
-        out[2] = 0;
-        out[3] = 0;
-        out[4] = 0;
-        out[5] = 1;
-        out[6] = 0;
-        out[7] = 0;
-        out[8] = 0;
-        out[9] = 0;
-        out[10] = 1;
-        out[11] = 0;
-        out[12] = 0;
-        out[13] = 0;
-        out[14] = 0;
-        out[15] = 1;
-        return out;
+    static identity(matriz) {
+        matriz[0] = 1;
+        matriz[1] = 0;
+        matriz[2] = 0;
+        matriz[3] = 0;
+        matriz[4] = 0;
+        matriz[5] = 1;
+        matriz[6] = 0;
+        matriz[7] = 0;
+        matriz[8] = 0;
+        matriz[9] = 0;
+        matriz[10] = 1;
+        matriz[12] = 0;
+        matriz[13] = 0;
+        matriz[14] = 0;
+        matriz[15] = 1;
+        return matriz;
     }
     static invert(out, a) {
         let a00 = a[0], a01 = a[1], a02 = a[2], a03 = a[3];
@@ -316,42 +250,6 @@ export class Matematicas {
             m[2], m[6], m[10], m[14],
             m[3], m[7], m[11], m[15],
         ];
-    }
-    static multiply(out, a, b) {
-        let a00 = a[0], a01 = a[1], a02 = a[2], a03 = a[3];
-        let a10 = a[4], a11 = a[5], a12 = a[6], a13 = a[7];
-        let a20 = a[8], a21 = a[9], a22 = a[10], a23 = a[11];
-        let a30 = a[12], a31 = a[13], a32 = a[14], a33 = a[15];
-        let b0 = b[0], b1 = b[1], b2 = b[2], b3 = b[3];
-        out[0] = b0 * a00 + b1 * a10 + b2 * a20 + b3 * a30;
-        out[1] = b0 * a01 + b1 * a11 + b2 * a21 + b3 * a31;
-        out[2] = b0 * a02 + b1 * a12 + b2 * a22 + b3 * a32;
-        out[3] = b0 * a03 + b1 * a13 + b2 * a23 + b3 * a33;
-        b0 = b[4];
-        b1 = b[5];
-        b2 = b[6];
-        b3 = b[7];
-        out[4] = b0 * a00 + b1 * a10 + b2 * a20 + b3 * a30;
-        out[5] = b0 * a01 + b1 * a11 + b2 * a21 + b3 * a31;
-        out[6] = b0 * a02 + b1 * a12 + b2 * a22 + b3 * a32;
-        out[7] = b0 * a03 + b1 * a13 + b2 * a23 + b3 * a33;
-        b0 = b[8];
-        b1 = b[9];
-        b2 = b[10];
-        b3 = b[11];
-        out[8] = b0 * a00 + b1 * a10 + b2 * a20 + b3 * a30;
-        out[9] = b0 * a01 + b1 * a11 + b2 * a21 + b3 * a31;
-        out[10] = b0 * a02 + b1 * a12 + b2 * a22 + b3 * a32;
-        out[11] = b0 * a03 + b1 * a13 + b2 * a23 + b3 * a33;
-        b0 = b[12];
-        b1 = b[13];
-        b2 = b[14];
-        b3 = b[15];
-        out[12] = b0 * a00 + b1 * a10 + b2 * a20 + b3 * a30;
-        out[13] = b0 * a01 + b1 * a11 + b2 * a21 + b3 * a31;
-        out[14] = b0 * a02 + b1 * a12 + b2 * a22 + b3 * a32;
-        out[15] = b0 * a03 + b1 * a13 + b2 * a23 + b3 * a33;
-        return out;
     }
     static RandInteger(min, max) {
         return Math.floor(Math.random() * (max - min)) + min;

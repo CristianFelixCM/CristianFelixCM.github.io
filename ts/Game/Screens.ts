@@ -34,7 +34,7 @@ export class Screens{
         this.context.fillStyle = "white";
         this.context.font = this.canvas.width*0.06+"px Amita";
         let posY = this.canvas.height*0.5;
-        let posX = this.canvas.width*0.5;
+        let posX = this.canvas.width*0.3;
         this.context.strokeText(text, posX, posY);
         this.context.fillText(text, posX, posY);
 

@@ -3,6 +3,17 @@ import { Character } from "./Character.js";
 
 export class Protagonist extends Character{
 
+    Hp = 100;
+    HpActual = this.Hp;
+    dañoGolpe = 35;
+    expPorDerrota = 10;
+    expActual = 0;
+    expSubirNivel = 10;
+    nivel = 1;
+
+
+
+
     numFlechas = 5;
     numPociones = 5;
 
@@ -98,4 +109,12 @@ export class Protagonist extends Character{
      }
 
 
+
+     setHp(daño : number){
+        this.HpActual -= daño;
+     }
+
+     getNivel(){
+        return this.nivel;
+     }
 }

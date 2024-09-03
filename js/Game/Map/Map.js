@@ -221,7 +221,6 @@ export class Mapa {
             y--;
         if (orientacion == 4)
             x++;
-        console.log("escaleras en habitacion " + habitacion + " y = " + y + " x = " + x);
         this.cuadricula[y][x] = 3;
         return [y, x, orientacion];
     }
