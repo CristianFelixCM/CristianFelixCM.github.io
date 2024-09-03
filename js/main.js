@@ -131,7 +131,7 @@ class Game {
             }
             this.flechas = [];
             for (let i = 0; i < 6; i++) {
-                let flecha = new Character(1, "flecha", ["Parado"], [1]);
+                let flecha = new Character(1, "Flecha", ["Parado"], [1]);
                 yield flecha.cargarModelo(gl);
                 pos = this.map.getCasillaVacia();
                 flecha.setCasilla(pos[0], pos[1]);
