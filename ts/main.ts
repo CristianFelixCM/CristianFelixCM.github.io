@@ -194,7 +194,7 @@ class Game{
 
     this.flechas = [];
     for(let i = 0; i<6 ; i++){
-      let flecha = new Character(1, "flecha",["Parado"],[1])
+      let flecha = new Character(1, "Flecha",["Parado"],[1])
       await flecha.cargarModelo(gl);
       pos = this.map.getCasillaVacia();
       flecha.setCasilla(pos[0],pos[1]);
@@ -238,13 +238,13 @@ class Game{
           //no hacer nada, es automático.
         break;
         case 4:
-          if(comprobarAccionPulsada() == 4){
+          if(comprobarAccionPulsada() != -1){
             this.stateGamePlay = 0; 
             this.protagonist = new Protagonist(0, "Protagonista1",["Parado","Andar","Atacar","Daño"],[30,30,30,30]);//reseteo al prota
           }
         break;
         case 5: 
-          if(comprobarAccionPulsada() == 4){
+          if(comprobarAccionPulsada() != -1){
             this.stateGamePlay = 0;
             this.protagonist = new Protagonist(0, "Protagonista1",["Parado","Andar","Atacar","Daño"],[30,30,30,30]);
           }
@@ -781,10 +781,11 @@ function majeadorTeclado(e : any){
       else if(e.keyCode == 38){ tecla = 0; }
       else if(e.keyCode == 40){ tecla = 2;}
       else if(e.keyCode == 65){ tecla = 4;}
-      else if(e.keyCode == 67){ tecla = 8;}
+      else if(e.keyCode == 70){ tecla = 8;}
       else if(e.keyCode == 80){ tecla = 7;}
       else if(e.keyCode == 77){ tecla = 6;}
       else if(e.keyCode == 81){ game.subir();}
+      else if(e.keyCode >= 39 && e.keyCode <= 90){tecla = 99;}//otra tecla pulsada
 
       else tecla = -1;
     }
@@ -869,6 +870,7 @@ function comprobarAccionPulsada(){
       else if(teclacomprobada == 7){ return 7;}//usar pocion
       else if(teclacomprobada == 8){ return 8;}//usar flecha
       else if(teclacomprobada == 9){ game.interface.showLog();}//para moviles, mostrar log
+      else if(teclacomprobada == 99){ return 99;}
 
     
       return -1;
