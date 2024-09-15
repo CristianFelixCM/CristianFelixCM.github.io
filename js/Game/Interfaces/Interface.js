@@ -67,7 +67,6 @@ export class Interface {
                     }
                     if (map.esEscalera(prota.getCasilla()[0] + y, prota.getCasilla()[1] + x)) {
                         this.mapa[prota.getCasilla()[0] + y][prota.getCasilla()[1] + x] = 3;
-                        console.log("ES CALERA");
                     }
                 }
             }
