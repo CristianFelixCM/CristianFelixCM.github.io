@@ -33,8 +33,8 @@ export class Fragment {
     void main(void) {
 
 
-        vec3 lightDirection = vec3(-0.25, -0.25, -0.25);
-        vec4 lightAmbient = vec4(0.7,0.7, 0.7, 1.0);
+        vec3 lightDirection = vec3(-0.1, -0.15, -0.25);
+        vec4 lightAmbient = vec4(1.0,1.0,1.0, 1.0);
         vec4 lightDifusse = vec4(0.7,0.7, 0.7, 1.0);
         vec4 lightSpecular = vec4(0.7,0.7, 0.7, 1.0);
 

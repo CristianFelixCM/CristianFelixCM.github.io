@@ -1,5 +1,4 @@
 import { WebGLController } from "../../WebGLController/WebGLController.js";
-import { ModelController } from "../../WebGLController/Model.js";
 import { Matematicas } from "../../WebGLController/Matematicas.js";
 import { Clock } from "../Clock.js";
 
@@ -63,7 +62,7 @@ export class Character{
     
 
     async cargarModelo(gl : WebGL2RenderingContext){
-        await ModelController.cargarModelo(this.model, this.animaciones, this.framesAnimaciones ,gl);
+        await WebGLController.cargarModelo(this.model, this.animaciones, this.framesAnimaciones);
     }
 
 

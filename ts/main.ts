@@ -9,17 +9,13 @@ import { Clock } from "./Game/Clock.js";
 import { Turnos } from "./Game/Turnos.js";
 import { Screens } from "./Game/Screens.js";
 
-import { ModelController } from "./WebGLController/Model.js";
 
-
+//CARGA DE LOS CONTEXTOS
 
 const canvas = document.querySelector("#glcanvas")  as HTMLCanvasElement | null;
 if (canvas === null) throw new Error("Could not find canvas element");
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
-
-
-
 
 const gl = canvas.getContext("webgl2");
 if (gl === null) throw new Error("Could not get WebGL context");
@@ -33,7 +29,7 @@ if (contexto2D === null) throw new Error("Could not get WebGL context");
 
 
 
-
+//CLASE GAME
 
 class Game{
 
@@ -764,12 +760,11 @@ game.init(gl);
 
 
 
+//GESTOR EVENTOS DE ENTRADA
+
 var tecla = -1;
 
-
 document.addEventListener("keydown", majeadorTeclado, false);
-
-
 
 let clockControles = new Clock();
 clockControles.delta = 1; 

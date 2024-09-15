@@ -60,6 +60,11 @@ export class WebGLController {
         this.gl.canvas.height = window.innerHeight;
         this.camera.changeViewPort(window.innerWidth, window.innerHeight);
     }
+    static cargarModelo(name, animaciones, framesAnimaciones) {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield ModelController.cargarModelo(name, animaciones, framesAnimaciones, this.gl);
+        });
+    }
 }
 WebGLController.mover = [0.0, 0.0, 0.0];
 WebGLController.isLamp = 0;

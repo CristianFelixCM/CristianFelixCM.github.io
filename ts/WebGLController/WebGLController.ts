@@ -96,4 +96,11 @@ export class WebGLController {
       this.gl.canvas.height = window.innerHeight;
       this.camera.changeViewPort(window.innerWidth, window.innerHeight);
     }
+
+
+    static async cargarModelo(name : string, animaciones : string[], framesAnimaciones : number[]){
+      await ModelController.cargarModelo(name, animaciones, framesAnimaciones, this.gl);
+    }
+
+
 }

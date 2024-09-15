@@ -7,7 +7,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-import { ModelController } from "../../WebGLController/Model.js";
+import { WebGLController } from "../../WebGLController/WebGLController.js";
 import { Matematicas } from "../../WebGLController/Matematicas.js";
 import { Clock } from "../Clock.js";
 export class Character {
@@ -35,7 +35,7 @@ export class Character {
     }
     cargarModelo(gl) {
         return __awaiter(this, void 0, void 0, function* () {
-            yield ModelController.cargarModelo(this.model, this.animaciones, this.framesAnimaciones, gl);
+            yield WebGLController.cargarModelo(this.model, this.animaciones, this.framesAnimaciones);
         });
     }
     setPosition(x, y, z) {

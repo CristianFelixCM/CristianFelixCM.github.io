@@ -63,6 +63,8 @@ export class Interface{
 
         this.showNumeroPocionesYFlechas(prota);
         this.showBarraVida(prota);
+        this.nivel(prota);
+
 
         if(this.mapaActivo == true){
             this.drawMap(map, prota);
@@ -322,8 +324,22 @@ export class Interface{
         else {this.context.font = this.canvas.width*0.03+"px Amita"; posY = this.canvas.height*0.925; posX = this.canvas.width*0.44;}
         this.context.strokeText(prota.HpActual+" / "+prota.Hp, posX, posY);
         this.context.fillText(prota.HpActual+" / "+prota.Hp, posX, posY);
+
+ 
     }
 
+    nivel(prota : any){
+        let posY = 0;
+        let posX = 0; 
+        this.context.shadowColor="Black";
+        this.context.shadowBlur=7;
+        this.context.fillStyle = "White";
+        if(this.isPC){ this.context.font = this.canvas.width*0.015+"px Amita"; posY = this.canvas.height*0.89; posX = this.canvas.width*0.5;}
+        else {this.context.font = this.canvas.width*0.015+"px Amita"; posY = this.canvas.height*0.85; posX = this.canvas.width*0.5;}
+        this.context.strokeText("Nivel "+prota.getNivel(), posX, posY);
+        this.context.fillText("Nivel "+prota.getNivel(), posX, posY);
+   
+    }
 
 
 
