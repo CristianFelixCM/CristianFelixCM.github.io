@@ -68,6 +68,8 @@ class Game {
             this.interface = new Interface(canvas2, contexto2D);
             this.turnos = new Turnos();
             this.map = new Mapa();
+            this.lamparas = [];
+            WebGLController.getLights().resetLight();
             let posHabitaciones = this.map.getPosicioneHabitaciones();
             for (let i = 0; i < posHabitaciones.length; i += 2) {
                 this.lamparas.push(new Character(-1, "Lampara", ["Parado"], [1]));
@@ -482,13 +484,15 @@ class Game {
                         do {
                             resto = (this.protagonist.expActual) - this.protagonist.expSubirNivel;
                             if (resto > 0) {
-                                this.protagonist.expSubirNivel = this.protagonist.expSubirNivel + 10;
+                                this.protagonist.expActual -= this.protagonist.expSubirNivel;
+                                this.protagonist.expSubirNivel += this.protagonist.expSubirNivel * 1.5;
                                 this.protagonist.nivel++;
                                 this.interface.addTextLog("Has subido al nivel " + this.protagonist.nivel);
                                 this.protagonist.clock.iniciar();
                                 this.stateAtacar = 3;
                             }
                         } while (resto > 0);
+                        console.log("exp actual " + this.protagonist.expActual + "exp subir nivel" + this.protagonist.expSubirNivel);
                     }
                 }
                 break;

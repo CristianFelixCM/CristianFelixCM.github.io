@@ -111,6 +111,10 @@ class Game{
 
     this.map = new Mapa();
 
+    //vacio para evitar que en el array se acumule las luces según se avance en las mazmorras.
+    this.lamparas = [];
+    WebGLController.getLights().resetLight();
+    
     let posHabitaciones = this.map.getPosicioneHabitaciones();
     for(let i = 0; i < posHabitaciones.length; i += 2){
 
@@ -330,7 +334,7 @@ class Game{
   tiempoScreenPiso = 0;
   renderScreenPiso(){
     if(this.tiempoScreenPiso < 10){ 
-      this.screens.drawPantalla("SUBIENDO A "+this.numPiso);
+      this.screens.drawPantalla("SUBIENDO A PISO "+this.numPiso);
       this.tiempoScreenPiso++;
       setTimeout(this.renderScreenPiso.bind(this) ,100);
     }else{
@@ -591,7 +595,8 @@ class Game{
             do {
               resto = (this.protagonist.expActual) - this.protagonist.expSubirNivel;
               if (resto > 0) {
-                this.protagonist.expSubirNivel = this.protagonist.expSubirNivel + 10;
+                this.protagonist.expActual -= this.protagonist.expSubirNivel;
+                this.protagonist.expSubirNivel += this.protagonist.expSubirNivel * 1.5;
                 this.protagonist.nivel++;
                 this.interface.addTextLog("Has subido al nivel " +this.protagonist.nivel);
                 this.protagonist.clock.iniciar();
@@ -599,7 +604,7 @@ class Game{
               }
            
             } while (resto > 0);
-                    
+            console.log("exp actual "+this.protagonist.expActual+ "exp subir nivel"+ this.protagonist.expSubirNivel )
           }
         }
         break;

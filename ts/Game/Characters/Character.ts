@@ -90,7 +90,7 @@ export class Character{
 
      actualizarFrame(){
         this.clock.actualizarDelta();
-        this.frameActual = Math.floor((this.clock.getDelta() / (this.tiempoTardaRealizarAnimacion / this.framesAnimaciones[this.animacionActual])) % this.framesAnimaciones[this.animacionActual]);
+        this.frameActual = Math.floor((this.clock.getDelta() / (this.tiempoTardaRealizarAnimacion / this.framesAnimaciones[this.animacionActual]))% this.framesAnimaciones[this.animacionActual] ); // quito el módulo () dado que en dispositivos lentos se saltan frames, y si se salta el último se queda repitiendo la animación
     }
 
      setState(s : number){

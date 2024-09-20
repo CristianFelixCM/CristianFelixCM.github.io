@@ -62,6 +62,15 @@ export class Lights{
         return this.numLight;
     }
 
+    resetLight(){
+        this.numLight = 0;
+        this.numMaxLight = 10;
+        this.arrayPositions = new Float32Array(this.numMaxLight*3);
+        this.arrayKa = new Float32Array(this.numMaxLight*3);
+        this.arrayKd = new Float32Array(this.numMaxLight*3);
+        this.arrayKs = new Float32Array(this.numMaxLight*3);
+    }
+
 }
 
 

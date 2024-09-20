@@ -132,15 +132,15 @@ class Model {
             await this.setImage(ruta+OBJMTL.image);
             await vao.createTextureBuffer(gl,this.image);
 
-            this.ka = [OBJMTL.Ka[0],OBJMTL.Ka[1],OBJMTL.Ka[2], 1.0];
+            this.ka = [OBJMTL.Ka[0]];
 
             if(OBJMTL.hasOwnProperty("Kd")){
-                this.kd = [OBJMTL.Kd[0],OBJMTL.Kd[1],OBJMTL.Kd[2], 1.0];
+                this.kd = [OBJMTL.Kd[0]];
             }else{
                 this.kd = [1.0, 1.0, 1.0, 1.0];
             }
             
-            this.ks = [OBJMTL.Ks[0],OBJMTL.Ks[1],OBJMTL.Ks[2], 1.0];
+            this.ks = [OBJMTL.Ks[0]];
             this.ns = OBJMTL.Ns;
         }
 

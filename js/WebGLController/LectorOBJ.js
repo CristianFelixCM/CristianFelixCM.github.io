@@ -73,13 +73,13 @@ export class LectorOBJ {
                     Ns = intermedio[1];
                 }
                 if ("Ka" == dato[i].slice(0, 2)) {
-                    Ka.push([intermedio[1], intermedio[2], intermedio[3]]);
+                    Ka.push([intermedio[1], intermedio[2], intermedio[3], "1.0000"]);
                 }
                 if ("Ks" == dato[i].slice(0, 2)) {
-                    Ks.push([intermedio[1], intermedio[2], intermedio[3]]);
+                    Ks.push([intermedio[1], intermedio[2], intermedio[3], "1.0000"]);
                 }
                 if ("Ke" == dato[i].slice(0, 2)) {
-                    Ke.push([intermedio[1], intermedio[2], intermedio[3]]);
+                    Ke.push([intermedio[1], intermedio[2], intermedio[3], "1.0000"]);
                 }
                 if ("Ni" == dato[i].slice(0, 2)) {
                     Ni = intermedio[1];
